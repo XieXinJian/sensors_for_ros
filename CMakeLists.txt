@@ -5,9 +5,11 @@ project(anroid_ros-superbuild)
 include(ExternalProject)
 
 set(minimum_target_sdk 30)
+set(build_tool_version 35.0.0)
 
 if(NOT ANDROID_HOME)
-  message(FATAL_ERROR "ANDROID_HOME must be given")
+  # message(FATAL_ERROR "ANDROID_HOME must be given")
+  set(ANDROID_HOME "/home/xxj/Android/Sdk")
 endif()
 if(NOT ANDROID_HOME)
   message(FATAL_ERROR "ANDROID_HOME must be given")
@@ -28,7 +30,7 @@ endif()
 
 file(GLOB android_aapt2
   LIST_DIRECTORIES false
-  "${ANDROID_HOME}/build-tools/*/aapt2"
+  "${ANDROID_HOME}/build-tools/${build_tool_version}/aapt2"
   )
 if(NOT android_aapt2)
   message(FATAL_ERROR "Failed to find aapt2 - is ANDROID_HOME correct?")
@@ -44,7 +46,7 @@ endif()
 
 file(GLOB android_zipalign
   LIST_DIRECTORIES false
-  "${ANDROID_HOME}/build-tools/*/zipalign"
+  "${ANDROID_HOME}/build-tools/${build_tool_version}/zipalign"
   )
 if(NOT android_zipalign)
   message(FATAL_ERROR "Failed to find zipalign - is ANDROID_HOME correct?")
@@ -52,7 +54,7 @@ endif()
 
 file(GLOB android_apksigner
   LIST_DIRECTORIES false
-  "${ANDROID_HOME}/build-tools/*/apksigner"
+  "${ANDROID_HOME}/build-tools/${build_tool_version}/apksigner"
   )
 if(NOT android_apksigner)
   message(FATAL_ERROR "Failed to find apksigner - is ANDROID_HOME correct?")
